@@ -1,0 +1,66 @@
+{
+  "runStart": {
+    "hope": 6,
+    "hopeCap": 12,
+    "ingots": 10,
+    "objectiveHp": 4,
+    "objectiveHpCap": 8,
+    "squadSizeBase": 4,
+    "initialSquad": [],
+    "initialRelics": []
+  },
+  "recruitCostByRarity": {
+    "3": 0,
+    "4": 2,
+    "5": 3,
+    "6": 6
+  },
+  "promoteCostByRarity": {
+    "4": 1,
+    "5": 2,
+    "6": 3
+  },
+  "floors": [
+    { "floorName": "红幕初启", "nodeCountRange": [3, 4], "weights": { "battle": 5, "emergencyBattle": 0, "shop": 1.5, "event": 2 } },
+    { "floorName": "积尘回廊", "nodeCountRange": [3, 4], "weights": { "battle": 4, "emergencyBattle": 1, "shop": 1.5, "event": 1.5, "gift": 0.7 } },
+    { "floorName": "旧舞台排练", "nodeCountRange": [3, 4], "weights": { "battle": 3, "emergencyBattle": 1.5, "shop": 1.5, "event": 1.5, "safeCorner": 0.7, "interlude": 0.7 } },
+    { "floorName": "梦魇排演", "nodeCountRange": [3, 4], "weights": { "battle": 2.5, "emergencyBattle": 2, "shop": 1.5, "event": 1.5, "gift": 0.7, "interlude": 0.7 } },
+    { "floorName": "终幕将至", "nodeCountRange": [2, 3], "weights": { "battle": 2, "emergencyBattle": 2, "shop": 1, "event": 1 } }
+  ],
+  "teams": [
+    {
+      "id": "team_command",
+      "name": "指挥分队",
+      "description": "每场战斗开始时获得 4 点临时目标生命。",
+      "mods": [
+        { "kind": "global", "target": "tempObjectiveHp", "op": "add", "value": 4 }
+      ]
+    },
+    {
+      "id": "team_cluster",
+      "name": "集群分队",
+      "description": "可同时上阵的干员数量增加 2 名。",
+      "mods": [
+        { "kind": "global", "target": "squadSize", "op": "add", "value": 2 }
+      ]
+    },
+    {
+      "id": "team_logistics",
+      "name": "后勤分队",
+      "description": "初始源石锭 +20，初始希望 +2。",
+      "mods": [
+        { "kind": "runStat", "target": "ingots", "op": "add", "value": 20 },
+        { "kind": "runStat", "target": "hope", "op": "add", "value": 2 }
+      ]
+    },
+    {
+      "id": "team_spearhead",
+      "name": "矛头分队",
+      "description": "所有干员的攻击力与生命值提升 15%。",
+      "mods": [
+        { "kind": "stat", "selector": { "faction": "operator" }, "stat": "atk", "op": "mul", "value": 1.15 },
+        { "kind": "stat", "selector": { "faction": "operator" }, "stat": "hp", "op": "mul", "value": 1.15 }
+      ]
+    }
+  ]
+}

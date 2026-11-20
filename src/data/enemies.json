@@ -1,0 +1,47 @@
+[
+  {
+    "id": "en_slug",
+    "name": "源石蛞蝓",
+    "hp": 550,
+    "atk": 100,
+    "def": 50,
+    "res": 0,
+    "attackInterval": 2.0,
+    "damageType": "physical",
+    "speed": 0.5,
+    "blockWeight": 1,
+    "leakDamage": 1,
+    "tags": ["weak"],
+    "description": "示例杂兵：慢速、低伤害，用于验证基本管线。"
+  },
+  {
+    "id": "en_soldier",
+    "name": "剧团打手",
+    "hp": 1000,
+    "atk": 200,
+    "def": 120,
+    "res": 10,
+    "attackInterval": 1.8,
+    "damageType": "physical",
+    "speed": 0.55,
+    "blockWeight": 1,
+    "leakDamage": 1,
+    "tags": [],
+    "description": "示例近战兵：标准面板，用于验证阻挡与对拼数值。"
+  },
+  {
+    "id": "en_runner",
+    "name": "红幕掠袭者",
+    "hp": 420,
+    "atk": 150,
+    "def": 60,
+    "res": 0,
+    "attackInterval": 1.5,
+    "damageType": "physical",
+    "speed": 1.1,
+    "blockWeight": 1,
+    "leakDamage": 1,
+    "tags": ["fast"],
+    "description": "示例快速兵：高速低血，用于验证费用压力与漏怪判定。"
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "st_crimson_lobby",
+    "name": "猩红前厅",
+    "rows": 5,
+    "cols": 7,
+    "terrain": [
+      ".......",
+      ".hhhh..",
+      "SrrrrrG",
+      ".hhhh..",
+      "......."
+    ],
+    "spawns": [{ "row": 2, "col": 0 }],
+    "goals": [{ "row": 2, "col": 6 }],
+    "paths": [
+      [
+        { "row": 2, "col": 0 },
+        { "row": 2, "col": 1 },
+        { "row": 2, "col": 2 },
+        { "row": 2, "col": 3 },
+        { "row": 2, "col": 4 },
+        { "row": 2, "col": 5 },
+        { "row": 2, "col": 6 }
+      ]
+    ],
+    "waves": [
+      {
+        "trigger": "time",
+        "delay": 2,
+        "entries": [
+          { "enemyId": "en_slug", "count": 3, "interval": 2, "delay": 0, "spawn": 0 }
+        ]
+      },
+      {
+        "trigger": "clear",
+        "delay": 5,
+        "entries": [
+          { "enemyId": "en_soldier", "count": 2, "interval": 3, "delay": 0, "spawn": 0 },
+          { "enemyId": "en_runner", "count": 2, "interval": 1.5, "delay": 6, "spawn": 0 }
+        ]
+      }
+    ],
+    "initialDp": 10,
+    "dpRate": 0.8,
+    "objectiveHp": 3,
+    "description": "示例关卡：直线通道，验证部署/阻挡/波次/胜负全流程。"
+  }
+]

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "rl_blood_blade",
+    "name": "染血的新月",
+    "rarity": 4,
+    "description": "近卫与特种干员的攻击力提升 20%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["guard", "specialist"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.2
+      }
+    ]
+  },
+  {
+    "id": "rl_rose_quartz",
+    "name": "玫瑰石念珠",
+    "rarity": 3,
+    "description": "所有远程干员的攻击力提升 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "tagsAll": ["ranged"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.15
+      }
+    ]
+  },
+  {
+    "id": "rl_dull_mask",
+    "name": "褪色的假面",
+    "rarity": 5,
+    "description": "所有敌人的生命值降低 10%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy" },
+        "stat": "hp",
+        "op": "mul",
+        "value": 0.9
+      }
+    ]
+  },
+  {
+    "id": "rl_wine_cup",
+    "name": "金酒之杯",
+    "rarity": 4,
+    "description": "费用回复速率提升 20%。",
+    "mods": [
+      { "kind": "global", "target": "dpRate", "op": "mul", "value": 1.2 }
+    ]
+  },
+  {
+    "id": "rl_cursed_coin",
+    "name": "厄运铸币",
+    "rarity": 2,
+    "description": "所有干员的部署费用提高 2 点。（负面收藏品）",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator" },
+        "stat": "cost",
+        "op": "add",
+        "value": 2
+      }
+    ]
+  }
+]
