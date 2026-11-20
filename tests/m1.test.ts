@@ -1,15 +1,14 @@
 /**
  * M1 战斗结算 验收测试（src/systems/combat.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
- * 然后运行：npx vitest run tests/m1.test.ts
+ * 运行：env -u NODE_OPTIONS npx vitest run tests/m1.test.ts
  */
 import { describe, it, expect } from "vitest";
-import { calcDamage, assignBlocking, combatSystem } from "../../src/systems/combat";
+import { calcDamage, assignBlocking, combatSystem } from "../src/systems/combat";
 import {
   makeBattleState, placeOperator, spawnEnemy, collectEvents,
   health, pos, tick
-} from "../helpers";
+} from "./helpers";
 
 describe("M1-公式 calcDamage", () => {
   it("物理伤害 = max(攻击-防御, 攻击×5%)", () => {
