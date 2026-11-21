@@ -1,13 +1,12 @@
 /**
  * M6 节点地图生成 验收测试（src/meta/node-map.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
- * 然后运行：npx vitest run tests/m6.test.ts
+ * 运行：env -u NODE_OPTIONS npx vitest run tests/m6.test.ts
  */
 import { describe, it, expect } from "vitest";
-import { generateNodeMap } from "../../src/meta/node-map";
-import { createRng } from "../../src/contracts";
-import { RUN_CONFIG } from "../helpers";
+import { generateNodeMap } from "../src/meta/node-map";
+import { createRng } from "../src/contracts";
+import { RUN_CONFIG } from "./helpers";
 
 const CFG = {
   floorName: "红幕初启",
@@ -61,17 +60,23 @@ describe("M6 generateNodeMap", () => {
   it("无环（DAG）：沿 next 链不会回到自身", () => {
     for (let seed = 1; seed <= 10; seed++) {
       const map = generateNodeMap(3, CFG, createRng(seed));
-      for (const id of Object.keys(map.nodes)) {
-        const visited = new Set<string>([id]);
-        const queue = [...map.nodes[id].next];
-        let cyclic = false;
-        while (queue.length > 0 && !cyclic) {
-          const cur = queue.shift()!;
-          if (visited.has(cur)) { cyclic = true; break; }
-          visited.add(cur);
-          queue.push(...map.nodes[cur].next);
+      // 三色 DFS 环检测（朴素 BFS 会把汇聚边误判为环）：
+      // 0=未访问 1=在当前 DFS 路径上 2=已确认无环的子图；
+      // 只有「回到当前路径上的节点」才是真正的环。
+      const state: Record<string, 0 | 1 | 2> = {};
+      const dfs = (id: string): boolean => {
+        const s = state[id] ?? 0;
+        if (s === 1) return true;
+        if (s === 2) return false;
+        state[id] = 1;
+        for (const nx of map.nodes[id].next) {
+          if (dfs(nx)) return true;
         }
-        expect(cyclic).toBe(false);
+        state[id] = 2;
+        return false;
+      };
+      for (const id of Object.keys(map.nodes)) {
+        expect(dfs(id)).toBe(false);
       }
     }
   });
