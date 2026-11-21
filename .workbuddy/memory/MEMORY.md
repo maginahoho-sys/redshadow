@@ -38,4 +38,5 @@
   关键语义：部署模式=点卡片→canDeploy 格子描边→点格部署；撤退=点干员格子弹面板；
   倍速/暂停写 registry；battleEnded 锁交互+结算面板（emit "battle-finished" 给 M11）。
   Phaser 坑：gameobjectdown 传单个对象；卡片点击必须排除在 blank-down 之外。
-- 状态：里程碑 A+B 全部完成（可完整跑肉鸽一局：分队→节点图→战斗→商店/事件/招募→过层→终局）；剩内容包 M12-M15 + M16 整合。
+- 2026-11-21 M12-M15 内容包完成（commits 637c24e/0e06ce1/1f0258c/efd2ebf）：干员 8 职业 / 敌人 7 含BOSS / 收藏品 30 / 关卡 5 含BOSS关。
+- 2026-11-21 M16 整合完成（94313eb→516cb7d）：Boot 标题+localStorage 断点续跑、平衡矩阵全达标、医疗治疗机制（combat 按 profession 分流）、headless 全流程回归 0 报错。95 tests 全绿，项目全部完成。
