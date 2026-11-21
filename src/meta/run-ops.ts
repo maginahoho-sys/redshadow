@@ -17,7 +17,7 @@ import operatorsJson from "../data/operators.json";
 
 /** 干员 id → 星级（进阶费用按此查表） */
 const RARITY_BY_ID: Record<string, number> = Object.fromEntries(
-  (operatorsJson as OperatorDef[]).map(o => [o.id, o.rarity])
+  (operatorsJson as unknown as OperatorDef[]).map(o => [o.id, o.rarity])
 );
 
 // ============================================================
