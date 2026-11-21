@@ -1,19 +1,19 @@
 /**
  * M7 商店·招募·事件 验收测试（src/meta/run-ops.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
+ * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "./helpers"` 改为 `from "./helpers"`，
  * 然后运行：npx vitest run tests/m7.test.ts
  */
 import { describe, it, expect } from "vitest";
 import {
   recruitCost, recruitOperator, promoteOperator,
   generateShopItems, resolveEvent
-} from "../../src/meta/run-ops";
-import { createRng } from "../../src/contracts";
-import type { EventDef, RelicDef } from "../../src/contracts";
-import { makeRunState, RUN_CONFIG, OPERATOR_DEFS } from "../helpers";
-import eventsJson from "../../src/data/events.json";
-import relicsJson from "../../src/data/relics.json";
+} from "../src/meta/run-ops";
+import { createRng } from "../src/contracts";
+import type { EventDef, RelicDef } from "../src/contracts";
+import { makeRunState, RUN_CONFIG, OPERATOR_DEFS } from "./helpers";
+import eventsJson from "../src/data/events.json";
+import relicsJson from "../src/data/relics.json";
 
 const EVENTS: Record<string, EventDef> = Object.fromEntries(
   (eventsJson as EventDef[]).map(e => [e.id, e])
@@ -46,9 +46,10 @@ describe("M7 招募", () => {
 
   it("队伍满编时招募进入后备，同样扣希望", () => {
     const s = makeRunState({ hope: 6, squad: ["op_guard_01"] });
-    expect(recruitOperator(s, "op_sniper_01", RUN_CONFIG.recruitCostByRarity, 1, OPERATOR_DEFS)).toBe(true);
+    // 用 4 星近卫（招募费 2）；重复招募同一干员允许
+    expect(recruitOperator(s, "op_guard_01", RUN_CONFIG.recruitCostByRarity, 1, OPERATOR_DEFS)).toBe(true);
     expect(s.squad).toHaveLength(1);
-    expect(s.reserve).toContain("op_sniper_01");
+    expect(s.reserve).toContain("op_guard_01");
     expect(s.hope).toBe(6 - 2);
   });
 
