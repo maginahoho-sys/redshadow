@@ -34,4 +34,8 @@
   每格 setData("cell") 给 M10；registry 约定 battleSpeed/battlePaused；delta 截断 100ms。
 - 2026-11-21 M9 精灵血条完成（commit 085d0e8）：src/render/sprites.ts。
   关键语义：容器锚点脚底中心、出生立即定位；阻挡连线按 blockedBy 每帧对账；headless 验证须在单次 evaluate 内轮询（跨 evaluate RAF 节流假死）。
-- 状态：里程碑 A 剩 M10 HUD（做完可打第一关）+ 内容包 M12-M15 + M16 整合。
+- 2026-11-21 M10 战斗HUD完成（commit 163de57）：src/render/battle-hud.ts。
+  关键语义：部署模式=点卡片→canDeploy 格子描边→点格部署；撤退=点干员格子弹面板；
+  倍速/暂停写 registry；battleEnded 锁交互+结算面板（emit "battle-finished" 给 M11）。
+  Phaser 坑：gameobjectdown 传单个对象；卡片点击必须排除在 blank-down 之外。
+- 状态：里程碑 A 全部完成（逻辑层+装配器+渲染层+HUD，可完整打一关）；剩内容包 M12-M15 + M16 整合。

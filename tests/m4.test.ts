@@ -1,18 +1,18 @@
 /**
  * M4 收藏品词条结算 验收测试（src/systems/relics.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
+ * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "./helpers"` 改为 `from "./helpers"`，
  * 然后运行：npx vitest run tests/m4.test.ts
  */
 import { describe, it, expect } from "vitest";
 import {
   matches, buildOperatorEffective, buildEnemyDefs, buildGlobals, runStartFrom
-} from "../../src/systems/relics";
+} from "../src/systems/relics";
 import type { RelicDef, RelicMod, OperatorDef, EnemyDef, EffectiveGlobals } from "../../src/contracts";
 import {
   OPERATOR_DEFS, ENEMY_DEFS, RUN_CONFIG
-} from "../helpers";
-import relicsJson from "../../src/data/relics.json";
+} from "./helpers";
+import relicsJson from "../src/data/relics.json";
 
 const RELICS: Record<string, RelicDef> = Object.fromEntries(
   (relicsJson as RelicDef[]).map(r => [r.id, r])
