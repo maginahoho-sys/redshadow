@@ -75,15 +75,17 @@ export function generateNodeMap(floor: number, cfg: FloorConfig, rng: Rng): Node
 
   // 4) 连边：只从第 k 排连向第 k+1 排（分层 → 天然无环）
   //    start → 首排全部；中段第 k 排每个节点 → 第 k+1 排全部（1~2 个）；
-  //    末排 → boss。
-  const link = (from: string, tos: string[]): void => {
-    nodes[from].next.push(...tos);
-  };
+  //    末排 → boss。（MapNode.next 为 readonly，构造期先收集再一次性装配）
+  const nexts: Record<string, string[]> = { [startId]: [], [bossId]: [] };
+  for (const row of rows) for (const id of row) nexts[id] = [];
   for (let r = 0; r < rows.length; r++) {
     const targets = r + 1 < rows.length ? rows[r + 1] : [bossId];
-    for (const from of rows[r]) link(from, targets);
+    for (const from of rows[r]) nexts[from].push(...targets);
   }
-  link(startId, rows[0]);
+  nexts[startId].push(...rows[0]);
+  for (const id of Object.keys(nexts)) {
+    nodes[id] = { ...nodes[id], next: nexts[id] };
+  }
 
   return { floor, floorName: cfg.floorName, nodes, start: startId, boss: bossId };
 }

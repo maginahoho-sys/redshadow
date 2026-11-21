@@ -25,7 +25,7 @@ export const RUN_CONFIG = runConfigJson as unknown as {
   runStart: { hope: number; hopeCap: number; ingots: number; objectiveHp: number; objectiveHpCap: number; squadSizeBase: number };
   recruitCostByRarity: Record<string, number>;
   promoteCostByRarity: Record<string, number>;
-  floors: { floorName: string; nodeCountRange: number[]; weights: Record<string, number> }[];
+  floors: { floorName: string; nodeCountRange: [number, number]; weights: Record<string, number> }[];
   teams: { id: string; name: string; description: string; mods: unknown[] }[];
 };
 
