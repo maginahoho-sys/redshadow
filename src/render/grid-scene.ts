@@ -13,6 +13,7 @@
 import Phaser from "phaser";
 import type { BattleState } from "../contracts";
 import { createBattle, stepBattle, type BattleSetupOptions } from "../game/battle-glue";
+import { createSpriteLayer, type SpriteLayer } from "./sprites";
 
 /** 格子像素尺寸（M9 精灵定位 / M10 HUD 依赖此常量） */
 export const CELL = 96;
@@ -42,6 +43,7 @@ const GOAL_STROKE = 0xe24b4a;
  */
 export class BattleScene extends Phaser.Scene {
   private battle!: BattleState;
+  private sprites!: SpriteLayer;
 
   constructor() {
     super("Battle");
@@ -69,6 +71,10 @@ export class BattleScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor("#14121a");
     this.drawGrid();
     this.drawTitle();
+
+    // M9 精灵层：干员/敌人火柴人 + 血条 + 事件表现
+    this.sprites = createSpriteLayer(this, this.battle);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.sprites.destroy());
 
     // 事件冒烟：把关键事件打到 console，便于 M8 手动验收（M9/M10 将接管表现）
     this.battle.bus.on("enemySpawned", e => {
@@ -122,5 +128,7 @@ export class BattleScene extends Phaser.Scene {
     const speed = this.registry.get("battleSpeed") ?? 1;
 
     stepBattle(this.battle, clamped * speed);
+    // 精灵层同步（暂停时也调用，保持血条/连线与状态一致）
+    this.sprites.update(clamped * speed);
   }
 }

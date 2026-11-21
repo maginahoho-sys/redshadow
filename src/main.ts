@@ -1,7 +1,8 @@
 import Phaser from "phaser";
 import { BattleScene } from "./render/grid-scene";
-import type { BattleSetupOptions } from "./game/battle-glue";
-import type { OperatorDef, EnemyDef, StageDef, EffectiveStats, EffectiveGlobals } from "./contracts";
+import { createBattle, type BattleSetupOptions } from "./game/battle-glue";
+import { deployOperator } from "./systems/deployment";
+import type { BattleState, OperatorDef, EnemyDef, StageDef, EffectiveStats, EffectiveGlobals } from "./contracts";
 
 import operatorsJson from "./data/operators.json";
 import enemiesJson from "./data/enemies.json";
@@ -54,14 +55,27 @@ const setup: BattleSetupOptions = {
   seed: 20261121
 };
 
-/** M8 引导场景：立即携带装配参数跳入战斗场景 */
+// M9 手动验收：先组装战斗，再预部署三名干员（先锋/近卫站路、狙击上高台），
+// 这样才能看到「阻挡连线 → 受击 → 死亡」的完整表现链。M10 交付后改为手动点击部署。
+const battle: BattleState = createBattle(setup);
+battle.dp = 999; // 验收用：跳过费用成长，直接部署
+for (const [opId, row, col] of [
+  ["op_vanguard_01", 2, 1],
+  ["op_guard_01", 2, 3],
+  ["op_sniper_01", 1, 2]
+] as const) {
+  const eid = deployOperator(battle, opId, { row, col });
+  console.log(`[验收] 部署 ${opId} @ (${row},${col}) → 实体 ${eid}`);
+}
+
+/** M8 引导场景：立即携带战斗状态跳入战斗场景 */
 class BootScene extends Phaser.Scene {
   constructor() {
     super("Boot");
   }
 
   create(): void {
-    this.scene.start("Battle", { setup });
+    this.scene.start("Battle", { battle });
   }
 }
 

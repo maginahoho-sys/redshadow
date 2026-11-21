@@ -29,4 +29,7 @@
 - 2026-11-21 M5 波次胜负完成（commit 9a5ad5e）：src/systems/waves.ts，验收 8/8 全绿。
   关键语义：time 波排期全入队出生后保留（已出生集合标记）；clear 波到点项当场出生不入队；
   锚点=排期链 lastSched+delay，time 严格 > 才开，clear 按条件连续时长 > delay 开。
-- 状态：里程碑 A 逻辑层（M1/M2/M3/M5）全部完成；剩渲染层 M8/M9/M10 + 内容包 M12-M15 + M16 整合。
+- 2026-11-21 M8 装配器+网格场景完成（commit 8c2851f）：src/game/battle-glue.ts + src/render/grid-scene.ts。
+  关键语义：stepBattle 里 time 累加归装配器；BattleScene 启动参数兼容 {battle}/{setup} 两种；
+  每格 setData("cell") 给 M10；registry 约定 battleSpeed/battlePaused；delta 截断 100ms。
+- 状态：里程碑 A 逻辑层+装配器完成；剩渲染 M9/M10（做完可打第一关）+ 内容包 M12-M15 + M16 整合。
