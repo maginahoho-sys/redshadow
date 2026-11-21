@@ -26,4 +26,7 @@
   关键语义：移动前按段方向投影把 index 快进越过已通过路点（测试敌人可出生在末段）。
 - 2026-11-21 M3 部署费用完成（commit bb4bfcc）：src/systems/deployment.ts，验收 11/11 全绿。
   关键语义：部署组件数值全取 effective；撤退全额退费 + 冷却；dpRate 加成读 effective.dpBonusRate。
-- 待办：M5 波次胜负（specs/m5-波次胜负.md）；里程碑 A（单关可玩）= M5/M8/M9/M10。
+- 2026-11-21 M5 波次胜负完成（commit 9a5ad5e）：src/systems/waves.ts，验收 8/8 全绿。
+  关键语义：time 波排期全入队出生后保留（已出生集合标记）；clear 波到点项当场出生不入队；
+  锚点=排期链 lastSched+delay，time 严格 > 才开，clear 按条件连续时长 > delay 开。
+- 状态：里程碑 A 逻辑层（M1/M2/M3/M5）全部完成；剩渲染层 M8/M9/M10 + 内容包 M12-M15 + M16 整合。
