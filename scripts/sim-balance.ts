@@ -9,7 +9,7 @@
  *
  * 用法：env -u NODE_OPTIONS npx tsx scripts/sim-balance.ts
  */
-import type { BattleState, StageDef, OperatorDef, EnemyDef, RelicDef, RelicMod, TeamDef, Vec2, EffectiveStats } from "../contracts";
+import type { BattleState, StageDef, OperatorDef, EnemyDef, RelicDef, RelicMod, TeamDef, Vec2, EffectiveStats, SquadMember } from "../src/contracts";
 import { createBattle, stepBattle } from "../src/game/battle-glue";
 import { canDeploy, deployOperator } from "../src/systems/deployment";
 import { buildOperatorEffective, buildEnemyDefs, buildGlobals } from "../src/systems/relics";
@@ -74,10 +74,10 @@ function tryDeploy(state: BattleState): void {
   const melee = meleeSpots(state);
   // 近战优先级：先锋（回费）> 重装 > 近卫 > 特种；远程全平等（按队伍顺序）
   const meleeOrder = ["vanguard", "defender", "guard", "specialist"];
-  const ready = state.squad.filter(m => m.state === "ready").map(m => m.operatorId);
-  const meleeIds = ready.filter(id => OPERATOR_DEFS[id].placement === "melee")
-    .sort((a, b) => meleeOrder.indexOf(OPERATOR_DEFS[a].profession) - meleeOrder.indexOf(OPERATOR_DEFS[b].profession));
-  const rangedIds = ready.filter(id => OPERATOR_DEFS[id].placement === "ranged");
+  const ready: string[] = state.squad.filter((m: SquadMember) => m.state === "ready").map((m: SquadMember) => m.operatorId);
+  const meleeIds = ready.filter((id: string) => OPERATOR_DEFS[id].placement === "melee")
+    .sort((a: string, b: string) => meleeOrder.indexOf(OPERATOR_DEFS[a].profession) - meleeOrder.indexOf(OPERATOR_DEFS[b].profession));
+  const rangedIds = ready.filter((id: string) => OPERATOR_DEFS[id].placement === "ranged");
 
   for (const id of rangedIds) {
     for (const cell of ranged) {

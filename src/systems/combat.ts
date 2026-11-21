@@ -166,6 +166,42 @@ function pickEnemyTarget(state: BattleState, enemyId: number): number[] {
   return [blockerId];
 }
 
+/**
+ * 医疗目标选择（M16 扩展）：射程内受伤的干员，按 hp/maxHp 比例升序（最重者优先）。
+ * 满血干员不选中；治疗量 = atk（不套伤害公式、不吃 def/res）。
+ */
+function pickMedicTargets(state: BattleState, medicId: number): number[] {
+  const identity = state.world.get(medicId, "identity");
+  const myPos = state.world.get(medicId, "position");
+  if (!identity || !myPos) return [];
+
+  const eff = state.effective[identity.defId];
+  const rangeSet = new Set<string>(
+    eff ? eff.range.map(([dr, dc]) => `${dr},${dc}`) : []
+  );
+
+  const wounded: { id: number; ratio: number }[] = [];
+  for (const opId of state.world.query("block", "position")) {
+    if (opId === medicId) continue; // 不奶自己（满血也不需要）
+    const pos = state.world.get(opId, "position")!;
+    const key = `${pos.row - myPos.row},${pos.col - myPos.col}`;
+    if (!rangeSet.has(key)) continue;
+    const health = state.world.get(opId, "health");
+    if (!health || health.hp <= 0 || health.hp >= health.maxHp) continue;
+    wounded.push({ id: opId, ratio: health.hp / health.maxHp });
+  }
+  wounded.sort((a, b) => a.ratio - b.ratio);
+  return wounded.map(w => w.id);
+}
+
+/** 该干员是否医疗（按职业判定；数据驱动，无需新字段） */
+function isMedic(state: BattleState, operatorId: number): boolean {
+  const identity = state.world.get(operatorId, "identity");
+  if (!identity) return false;
+  const def = state.operatorDefs[identity.defId];
+  return def?.profession === "medic";
+}
+
 /** 执行一次攻击：按伤害公式扣血并发 attackLanded 事件 */
 function resolveHits(state: BattleState, hits: PendingHit[], atk: CAttack): void {
   for (const hit of hits) {
@@ -251,9 +287,13 @@ export function combatSystem(state: BattleState, dt: number): void {
     atk.timer += dt;
     if (atk.timer < atk.interval) continue;
 
-    // 2) 目标选择
+    // 2) 目标选择：医疗干员治疗友军，其余照常打敌人
     let targets: number[];
-    if (identity.faction === "operator") {
+    let healing = false;
+    if (identity.faction === "operator" && isMedic(state, id)) {
+      targets = pickMedicTargets(state, id);
+      healing = true;
+    } else if (identity.faction === "operator") {
       targets = pickOperatorTargets(state, id);
     } else {
       targets = pickEnemyTarget(state, id);
@@ -263,8 +303,16 @@ export function combatSystem(state: BattleState, dt: number): void {
       .map(target => ({ attacker: id, target }));
     if (hitList.length === 0) continue; // 无目标：计时保留，出现目标后立即补攻击
 
-    // 3) 结算伤害并发事件，随后扣减一个攻击间隔（大步长不叠加多次攻击）
-    resolveHits(state, hitList, atk);
+    // 3) 结算：治疗 = 回血（夹紧 maxHp，不吃 def/res）；攻击 = 伤害公式
+    if (healing) {
+      for (const hit of hitList) {
+        const health = state.world.get(hit.target, "health");
+        if (!health || health.hp <= 0) continue;
+        health.hp = Math.min(health.maxHp, health.hp + atk.atk);
+      }
+    } else {
+      resolveHits(state, hitList, atk);
+    }
     atk.timer -= atk.interval;
   }
 
