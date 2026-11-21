@@ -92,9 +92,9 @@ export function movementSystem(state: BattleState, dt: number): void {
     skipPassedWaypoints(path, pos);
     advanceAlongPath(path, pos, path.speed * dt);
 
-    // 走完整个路点序列 → 漏怪：扣目标生命、发事件、销毁实体
+    // 走完整个路点序列 → 漏怪：扣目标生命（夹紧不低于 0）、发事件、销毁实体
     if (path.index >= path.waypoints.length) {
-      state.objectiveHp -= path.leakDamage;
+      state.objectiveHp = Math.max(0, state.objectiveHp - path.leakDamage);
       state.bus.emit({ type: "enemyLeaked", entityId: id, leakDamage: path.leakDamage });
       state.world.destroyEntity(id);
     }
