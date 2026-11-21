@@ -32,4 +32,6 @@
 - 2026-11-21 M8 装配器+网格场景完成（commit 8c2851f）：src/game/battle-glue.ts + src/render/grid-scene.ts。
   关键语义：stepBattle 里 time 累加归装配器；BattleScene 启动参数兼容 {battle}/{setup} 两种；
   每格 setData("cell") 给 M10；registry 约定 battleSpeed/battlePaused；delta 截断 100ms。
-- 状态：里程碑 A 逻辑层+装配器完成；剩渲染 M9/M10（做完可打第一关）+ 内容包 M12-M15 + M16 整合。
+- 2026-11-21 M9 精灵血条完成（commit 085d0e8）：src/render/sprites.ts。
+  关键语义：容器锚点脚底中心、出生立即定位；阻挡连线按 blockedBy 每帧对账；headless 验证须在单次 evaluate 内轮询（跨 evaluate RAF 节流假死）。
+- 状态：里程碑 A 剩 M10 HUD（做完可打第一关）+ 内容包 M12-M15 + M16 整合。

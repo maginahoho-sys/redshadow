@@ -14,6 +14,7 @@ import Phaser from "phaser";
 import type { BattleState } from "../contracts";
 import { createBattle, stepBattle, type BattleSetupOptions } from "../game/battle-glue";
 import { createSpriteLayer, type SpriteLayer } from "./sprites";
+import { createBattleHud } from "./battle-hud";
 
 /** 格子像素尺寸（M9 精灵定位 / M10 HUD 依赖此常量） */
 export const CELL = 96;
@@ -74,6 +75,8 @@ export class BattleScene extends Phaser.Scene {
 
     // M9 精灵层：干员/敌人火柴人 + 血条 + 事件表现
     this.sprites = createSpriteLayer(this, this.battle);
+    // M10 HUD：状态条/部署栏/倍速暂停/结算面板
+    createBattleHud(this, this.battle);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.sprites.destroy());
 
     // 事件冒烟：把关键事件打到 console，便于 M8 手动验收（M9/M10 将接管表现）
