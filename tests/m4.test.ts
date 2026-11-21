@@ -8,7 +8,7 @@ import { describe, it, expect } from "vitest";
 import {
   matches, buildOperatorEffective, buildEnemyDefs, buildGlobals, runStartFrom
 } from "../src/systems/relics";
-import type { RelicDef, RelicMod, OperatorDef, EnemyDef, EffectiveGlobals } from "../../src/contracts";
+import type { RelicDef, RelicMod, OperatorDef, EnemyDef, EffectiveGlobals } from "../src/contracts";
 import {
   OPERATOR_DEFS, ENEMY_DEFS, RUN_CONFIG
 } from "./helpers";
