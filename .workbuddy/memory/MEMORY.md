@@ -24,4 +24,6 @@
   关键语义：干员优先攻击被自己阻挡的敌人且不受射程限制；死亡清理统一在攻击结算后。
 - 2026-11-21 M2 敌人寻路完成（commit 1bdd558）：src/systems/movement.ts，验收 6/6 全绿。
   关键语义：移动前按段方向投影把 index 快进越过已通过路点（测试敌人可出生在末段）。
-- 待办：M3 部署费用（specs/m3-部署费用.md）；里程碑 A（单关可玩）= M3/M5/M8/M9/M10。
+- 2026-11-21 M3 部署费用完成（commit bb4bfcc）：src/systems/deployment.ts，验收 11/11 全绿。
+  关键语义：部署组件数值全取 effective；撤退全额退费 + 冷却；dpRate 加成读 effective.dpBonusRate。
+- 待办：M5 波次胜负（specs/m5-波次胜负.md）；里程碑 A（单关可玩）= M5/M8/M9/M10。

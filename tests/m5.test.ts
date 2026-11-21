@@ -1,14 +1,14 @@
 /**
  * M5 波次与胜负 验收测试（src/systems/waves.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
+ * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "./helpers"` 改为 `from "./helpers"`，
  * 然后运行：npx vitest run tests/m5.test.ts
  */
 import { describe, it, expect } from "vitest";
-import { waveSystem, checkBattleEnd } from "../../src/systems/waves";
+import { waveSystem, checkBattleEnd } from "../src/systems/waves";
 import {
   makeBattleState, collectEvents, enemyIds, STAGE
-} from "../helpers";
+} from "./helpers";
 
 /** 把战斗时间推进 total 秒，每步 step 秒执行 waveSystem */
 function runWaves(s: ReturnType<typeof makeBattleState>, total: number, step = 0.5): void {
