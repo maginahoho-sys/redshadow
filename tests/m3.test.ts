@@ -1,12 +1,12 @@
 /**
  * M3 部署与费用 验收测试（src/systems/deployment.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
+ * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "./helpers"` 改为 `from "./helpers"`，
  * 然后运行：npx vitest run tests/m3.test.ts
  */
 import { describe, it, expect } from "vitest";
-import { canDeploy, deployOperator, retreatOperator, deploymentSystem } from "../../src/systems/deployment";
-import { makeBattleState, placeOperator, spawnEnemy, collectEvents } from "../helpers";
+import { canDeploy, deployOperator, retreatOperator, deploymentSystem } from "../src/systems/deployment";
+import { makeBattleState, placeOperator, spawnEnemy, collectEvents } from "./helpers";
 
 describe("M3 canDeploy 合法性", () => {
   it("近战只能部署在地面道路", () => {
