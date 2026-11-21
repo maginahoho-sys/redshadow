@@ -11,8 +11,9 @@
  *     （按路点 index 降序、到下一路点距离升序）；timer 累积到 interval 攻击一次，
  *     攻击后 timer -= interval（大步长允许补一次攻击，不叠加多次）
  *   - 敌人攻击：仅被阻挡时攻击其阻挡者，无视射程
- *   - 死亡清理：所有攻击结算完后统一处理 hp <= 0 的实体
- */
+ *   - 死亡清理：所有攻击结算完后统一处理 hp <= 0 的实体；
+ *     干员死亡额外把 SquadMember 置入再部署冷却（不退费），避免状态卡在 deployed
+ * */
 
 import type {
   BattleState,
@@ -260,7 +261,9 @@ function cleanupDeaths(state: BattleState): void {
     }
   }
 
-  // 干员死亡：解除其阻挡的所有敌人（下一帧可被其他干员重新阻挡）
+  // 干员死亡：解除其阻挡的所有敌人（下一帧可被其他干员重新阻挡），
+  // 并把成员状态置入再部署冷却（等价撤退的冷却处理，但不退费）。
+  // 缺此步会让 SquadMember 卡在 "deployed"，冷却结束后仍提示"干员已在场上"。
   const deadOperators = dead.filter(d => d.faction === "operator").map(d => d.id);
   if (deadOperators.length === 0) return;
   for (const enemyId of state.world.query("enemyPath")) {
@@ -268,6 +271,16 @@ function cleanupDeaths(state: BattleState): void {
     if (path && deadOperators.includes(path.blockedBy)) {
       path.blockedBy = -1;
     }
+  }
+  for (const opId of deadOperators) {
+    const member = state.squad.find(m => m.entityId === opId);
+    if (!member || member.state !== "deployed") continue;
+    // 冷却时长取词条结算后的有效属性，缺失时回退干员定义
+    const eff = state.effective[member.operatorId];
+    const def = state.operatorDefs[member.operatorId];
+    member.cooldownRemaining = (eff ?? def).redeployCooldown;
+    member.state = "cooldown";
+    member.entityId = undefined;
   }
 }
 
