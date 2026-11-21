@@ -1,14 +1,13 @@
 /**
  * M2 敌人寻路移动 验收测试（src/systems/movement.ts）
  *
- * 交付时：把本文件移到 tests/ 目录，并把 `../../src/` 改回 `../src/`、`from "../helpers"` 改为 `from "./helpers"`，
- * 然后运行：npx vitest run tests/m2.test.ts
+ * 运行：env -u NODE_OPTIONS npx vitest run tests/m2.test.ts
  */
 import { describe, it, expect } from "vitest";
-import { movementSystem } from "../../src/systems/movement";
+import { movementSystem } from "../src/systems/movement";
 import {
   makeBattleState, spawnEnemy, collectEvents, pos
-} from "../helpers";
+} from "./helpers";
 
 describe("M2 movementSystem", () => {
   it("沿路点直线移动（0.5 格/秒）", () => {
