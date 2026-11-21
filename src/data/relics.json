@@ -67,5 +67,361 @@
         "value": 2
       }
     ]
+  },
+  {
+    "id": "rl_vanguard_flag",
+    "name": "开场者的旗帜",
+    "rarity": 3,
+    "description": "所有先锋干员的生命值提升 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["vanguard"] },
+        "stat": "hp",
+        "op": "mul",
+        "value": 1.15
+      }
+    ]
+  },
+  {
+    "id": "rl_defender_shield",
+    "name": "包厢铁闸盾",
+    "rarity": 4,
+    "description": "所有重装干员的生命值提升 20%，防御力提高 30 点。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["defender"] },
+        "stat": "hp",
+        "op": "mul",
+        "value": 1.2
+      },
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["defender"] },
+        "stat": "def",
+        "op": "add",
+        "value": 30
+      }
+    ]
+  },
+  {
+    "id": "rl_sniper_lens",
+    "name": "观剧望远镜",
+    "rarity": 3,
+    "description": "所有狙击干员的攻击力提升 20%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["sniper"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.2
+      }
+    ]
+  },
+  {
+    "id": "rl_caster_score",
+    "name": "残缺的乐谱",
+    "rarity": 4,
+    "description": "所有术师干员的攻击力提升 20%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["caster"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.2
+      }
+    ]
+  },
+  {
+    "id": "rl_medic_gauze",
+    "name": "后台纱布卷",
+    "rarity": 3,
+    "description": "所有医疗干员的攻击力（即治疗量）提升 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["medic"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.15
+      }
+    ]
+  },
+  {
+    "id": "rl_supporter_strings",
+    "name": "调音的丝线",
+    "rarity": 3,
+    "description": "所有辅助干员的攻击力提升 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["supporter"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.15
+      }
+    ]
+  },
+  {
+    "id": "rl_specialist_dagger",
+    "name": "谢幕短刃",
+    "rarity": 4,
+    "description": "所有特种干员的攻击间隔缩短 10%（攻速提升）。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "professions": ["specialist"] },
+        "stat": "attackInterval",
+        "op": "mul",
+        "value": 0.9
+      }
+    ]
+  },
+  {
+    "id": "rl_melee_oath",
+    "name": "近台的誓约",
+    "rarity": 3,
+    "description": "所有近战干员的防御力提高 20 点。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "tagsAll": ["melee"] },
+        "stat": "def",
+        "op": "add",
+        "value": 20
+      }
+    ]
+  },
+  {
+    "id": "rl_ranged_charm",
+    "name": "高台护身符",
+    "rarity": 3,
+    "description": "所有远程干员的生命值提升 10%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "tagsAll": ["ranged"] },
+        "stat": "hp",
+        "op": "mul",
+        "value": 1.1
+      }
+    ]
+  },
+  {
+    "id": "rl_dpgain_pouch",
+    "name": "检票员的腰包",
+    "rarity": 3,
+    "description": "所有具备回费能力（dpGain）的干员攻击力提升 10%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "tagsAll": ["dpGain"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.1
+      }
+    ]
+  },
+  {
+    "id": "rl_armor_tear",
+    "name": "锈蚀的破甲钩",
+    "rarity": 4,
+    "description": "所有高防（armored）敌人的防御力降低 60 点。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy", "tagsAll": ["armored"] },
+        "stat": "def",
+        "op": "add",
+        "value": -60
+      }
+    ]
+  },
+  {
+    "id": "rl_swarm_lamp",
+    "name": "后台灭虫灯",
+    "rarity": 3,
+    "description": "所有虫群（swarm）敌人的生命值降低 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy", "tagsAll": ["swarm"] },
+        "stat": "hp",
+        "op": "mul",
+        "value": 0.85
+      }
+    ]
+  },
+  {
+    "id": "rl_red_gauze",
+    "name": "猩红纱幔",
+    "rarity": 4,
+    "description": "所有干员的生命值提升 10%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator" },
+        "stat": "hp",
+        "op": "mul",
+        "value": 1.1
+      }
+    ]
+  },
+  {
+    "id": "rl_discount_ticket",
+    "name": "折价的票根",
+    "rarity": 5,
+    "description": "所有干员的部署费用降低 1 点。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator" },
+        "stat": "cost",
+        "op": "add",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "id": "rl_old_script",
+    "name": "泛黄的剧本",
+    "rarity": 5,
+    "description": "所有干员的攻击间隔缩短 5%（攻速提升）。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator" },
+        "stat": "attackInterval",
+        "op": "mul",
+        "value": 0.95
+      }
+    ]
+  },
+  {
+    "id": "rl_hourglass",
+    "name": "锈蚀的沙漏",
+    "rarity": 5,
+    "description": "所有敌人的移动速度降低 15%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy" },
+        "stat": "speed",
+        "op": "mul",
+        "value": 0.85
+      }
+    ]
+  },
+  {
+    "id": "rl_cracked_horn",
+    "name": "喑哑的号角",
+    "rarity": 4,
+    "description": "所有敌人的攻击力降低 10%。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy" },
+        "stat": "atk",
+        "op": "mul",
+        "value": 0.9
+      }
+    ]
+  },
+  {
+    "id": "rl_candle_stub",
+    "name": "化妆间的残烛",
+    "rarity": 3,
+    "description": "战斗开始时的初始部署费用提高 10 点。",
+    "mods": [
+      { "kind": "global", "target": "initialDp", "op": "add", "value": 10 }
+    ]
+  },
+  {
+    "id": "rl_rehearsal_permit",
+    "name": "彩排许可证",
+    "rarity": 4,
+    "description": "战斗中的临时目标生命上限提高 3 点（可承受更多漏怪）。",
+    "mods": [
+      { "kind": "global", "target": "tempObjectiveHp", "op": "add", "value": 3 }
+    ]
+  },
+  {
+    "id": "rl_star_caller",
+    "name": "唤星的铃铛",
+    "rarity": 6,
+    "description": "战斗编队上限提高 1 人。",
+    "mods": [
+      { "kind": "global", "target": "squadSize", "op": "add", "value": 1 }
+    ]
+  },
+  {
+    "id": "rl_first_bow",
+    "name": "首演的贺花",
+    "rarity": 4,
+    "description": "进图时获得 1 点额外希望（开局希望 +1）。",
+    "mods": [
+      { "kind": "runStat", "target": "hope", "op": "add", "value": 1 }
+    ]
+  },
+  {
+    "id": "rl_blessed_ribbon",
+    "name": "祝福的缎带",
+    "rarity": 4,
+    "description": "所有远程干员获得 \"blessed\"（受祝福）标签。",
+    "mods": [
+      {
+        "kind": "grantTag",
+        "selector": { "faction": "operator", "tagsAll": ["ranged"] },
+        "tag": "blessed"
+      }
+    ]
+  },
+  {
+    "id": "rl_holy_choir",
+    "name": "圣咏的回声",
+    "rarity": 6,
+    "description": "所有带有 \"blessed\"（受祝福）标签的干员攻击力提升 25%（与「祝福的缎带」组合生效）。",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator", "tagsAll": ["blessed"] },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.25
+      }
+    ]
+  },
+  {
+    "id": "rl_greedy_spotlight",
+    "name": "贪婪的聚光灯",
+    "rarity": 1,
+    "description": "所有敌人的攻击力提升 10%。（负面收藏品）",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "enemy" },
+        "stat": "atk",
+        "op": "mul",
+        "value": 1.1
+      }
+    ]
+  },
+  {
+    "id": "rl_cracked_amber",
+    "name": "碎裂的琥珀",
+    "rarity": 2,
+    "description": "所有干员的攻击力降低 10%。（负面收藏品）",
+    "mods": [
+      {
+        "kind": "stat",
+        "selector": { "faction": "operator" },
+        "stat": "atk",
+        "op": "mul",
+        "value": 0.9
+      }
+    ]
   }
 ]
