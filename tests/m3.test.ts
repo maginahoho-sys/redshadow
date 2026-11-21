@@ -96,7 +96,7 @@ describe("M3 deploymentSystem 帧更新", () => {
     const s = makeBattleState({ dp: 20, squadOperatorIds: ["op_vanguard_01"] });
     deployOperator(s, "op_vanguard_01", { row: 2, col: 1 }); // 费 10，剩 10
     deploymentSystem(s, 1);
-    expect(s.dp).toBeCloseTo(10 + 0.8 + 0.05, 5);
+    expect(s.dp).toBeCloseTo(10 + 0.8 + 1.0, 5); // 数据同步：疾风前哨 dpBonusRate 0.05→1.0（先锋=回费引擎，2026-11-21 经济修复）
   });
 
   it("冷却倒计时归零后回到 ready", () => {

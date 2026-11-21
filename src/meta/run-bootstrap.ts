@@ -12,6 +12,11 @@ import { runStartFrom } from "../systems/relics";
 import { generateNodeMap, type FloorConfig } from "../meta/node-map";
 import runConfigJson from "../data/run-config.json";
 import stagesJson from "../data/stages.json";
+import operatorsJson from "../data/operators.json";
+
+/** 全部干员职业（招募券的职业池） */
+const OPERATOR_PROFESSIONS: string[] =
+  [...new Set((operatorsJson as unknown as { profession: string }[]).map(o => o.profession))];
 
 /** 探索局全局配置（run-config.json） */
 const RUN_CONFIG = runConfigJson as unknown as {
@@ -70,31 +75,36 @@ export function createRun(seed: number, teamId: string): RunState {
   };
 }
 
-/** 节点奖励表：希望 / 源石锭 / 收藏品概率（rng 可复现） */
+/** 节点奖励表：希望 / 源石锭 / 收藏品概率 / 招募券概率（rng 可复现） */
 interface RewardRow {
   hope: (rng: Rng) => number;
   ingots: (rng: Rng) => number;
   relicChance: number;
+  /** 战后额外掉落一张随机职业招募券的概率 */
+  ticketChance: number;
 }
 const REWARD_TABLE: Partial<Record<NodeType, RewardRow>> = {
   battle: {
-    hope: rng => 1 + rng.int(0, 1), ingots: rng => 6 + rng.int(0, 6), relicChance: 0.25
+    hope: rng => 1 + rng.int(0, 1), ingots: rng => 6 + rng.int(0, 6),
+    relicChance: 0.25, ticketChance: 0.3
   },
   emergencyBattle: {
-    hope: rng => 2 + rng.int(0, 1), ingots: rng => 10 + rng.int(0, 8), relicChance: 0.4
+    hope: rng => 2 + rng.int(0, 1), ingots: rng => 10 + rng.int(0, 8),
+    relicChance: 0.4, ticketChance: 0.5
   },
   boss: {
-    hope: () => 3, ingots: rng => 20 + rng.int(0, 10), relicChance: 1.0
+    hope: () => 3, ingots: rng => 20 + rng.int(0, 10),
+    relicChance: 1.0, ticketChance: 1.0
   }
 };
 
 /**
- * 节点完成后的奖励：希望/源石锭/概率收藏品；紧急作战加成；boss 过层。
+ * 节点完成后的奖励：希望/源石锭/概率收藏品/概率招募券；紧急作战加成；boss 过层。
  * 非战斗节点返回零奖励。
  */
 export function nodeRewards(
   state: RunState, nodeType: NodeType, rng: Rng, relicIds: string[]
-): { hope: number; ingots: number; relicId?: string } {
+): { hope: number; ingots: number; relicId?: string; ticket?: string } {
   const row = REWARD_TABLE[nodeType];
   if (!row) return { hope: 0, ingots: 0 };
 
@@ -106,17 +116,30 @@ export function nodeRewards(
     state.relics.push(relicId);
     state.eventLog.push(`获得收藏品 ${relicId}（${nodeType} 奖励）`);
   }
+  // 招募券：职业券池按干员表随机职业（与幕间余兴节点同构）
+  let ticket: string | undefined;
+  if (rng.next() < row.ticketChance) {
+    ticket = rng.pick(OPERATOR_PROFESSIONS);
+    state.recruitTickets.push(ticket);
+    state.eventLog.push(`获得【${ticket}】职业招募券（${nodeType} 奖励）`);
+  }
   state.eventLog.push(`完成 ${nodeType} 节点：+${hope} 希望 +${ingots} 源石锭`);
-  return { hope, ingots, relicId };
+  return { hope, ingots, relicId, ticket };
 }
 
 /**
- * 从关卡包按节点类型挑一个关卡（boss 节点挑 isBossStage）。
+ * 从关卡包按节点类型挑一个关卡。
+ * boss 节点按楼层选难度分层：1-2 层 → bossTier 1（试演）/ 3-4 层 → bossTier 2（彩排）
+ * / 5 层 → bossTier 3（终幕）；无匹配分层时退回任意 isBossStage 关。
  * emergency 优先带"紧急"标记的关卡（无标记则同池）；无合适关卡返回第一个。
  */
-export function pickStage(rng: Rng, nodeType: NodeType): StageDef {
+export function pickStage(rng: Rng, nodeType: NodeType, floor = 1): StageDef {
   if (nodeType === "boss") {
+    // 楼层 → 期望 boss 难度分层（越深越难）
+    const wantTier = floor <= 2 ? 1 : floor <= 4 ? 2 : 3;
     const bosses = STAGES.filter(s => s.isBossStage === true);
+    const tiered = bosses.filter(s => (s as { bossTier?: number }).bossTier === wantTier);
+    if (tiered.length > 0) return rng.pick(tiered);
     return bosses.length > 0 ? rng.pick(bosses) : STAGES[0];
   }
   const pool = STAGES.filter(s => s.isBossStage !== true);

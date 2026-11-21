@@ -199,6 +199,8 @@ export interface StageDef {
   readonly dpRate: number;       // 费用自然回复（点/秒）
   readonly objectiveHp: number;  // 本关目标生命（漏怪扣除，归零判负）
   readonly isBossStage?: boolean;
+  /** BOSS 关难度分层（可选）：1=前层试演 / 2=中前层彩排 / 3=终幕；boss 节点按楼层选对应分层 */
+  readonly bossTier?: number;
 }
 
 /** 探索事件效果（事件/商店共用） */

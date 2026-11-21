@@ -1,107 +1,137 @@
 [
-  {
-    "id": "en_slug",
-    "name": "源石蛞蝓",
-    "hp": 550,
-    "atk": 100,
-    "def": 50,
-    "res": 0,
-    "attackInterval": 2.0,
-    "damageType": "physical",
-    "speed": 0.5,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": ["weak"],
-    "description": "示例杂兵：慢速、低伤害，用于验证基本管线。"
-  },
-  {
-    "id": "en_soldier",
-    "name": "剧团打手",
-    "hp": 1000,
-    "atk": 200,
-    "def": 120,
-    "res": 10,
-    "attackInterval": 1.8,
-    "damageType": "physical",
-    "speed": 0.55,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": [],
-    "description": "示例近战兵：标准面板，用于验证阻挡与对拼数值。"
-  },
-  {
-    "id": "en_runner",
-    "name": "红幕掠袭者",
-    "hp": 420,
-    "atk": 150,
-    "def": 60,
-    "res": 0,
-    "attackInterval": 1.5,
-    "damageType": "physical",
-    "speed": 1.1,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": ["fast"],
-    "description": "示例快速兵：高速低血，用于验证费用压力与漏怪判定。"
-  },
-  {
-    "id": "en_armor_01",
-    "name": "铁幕守灵",
-    "hp": 1600,
-    "atk": 220,
-    "def": 500,
-    "res": 0,
-    "attackInterval": 2.2,
-    "damageType": "physical",
-    "speed": 0.35,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": ["armored"],
-    "description": "披着报废幕布铁架的行走的墙：物理攻击几乎无效，考验法术输出配置。"
-  },
-  {
-    "id": "en_hexer_01",
-    "name": "绯语咒伶",
-    "hp": 1200,
-    "atk": 260,
-    "def": 80,
-    "res": 60,
-    "attackInterval": 1.8,
-    "damageType": "arts",
-    "speed": 0.5,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": ["arcane"],
-    "description": "哼着倒扣的咏叹调：高法抗之躯，专治全队法伤的偏科编队。"
-  },
-  {
-    "id": "en_swarm_01",
-    "name": "哑角飞虱",
-    "hp": 260,
-    "atk": 90,
-    "def": 20,
-    "res": 0,
-    "attackInterval": 1.6,
-    "damageType": "physical",
-    "speed": 0.8,
-    "blockWeight": 1,
-    "leakDamage": 1,
-    "tags": ["weak", "swarm"],
-    "description": "成群涌向舞台的哑角虫群：单体输出会被数量淹没，考验范围清场能力。"
-  },
-  {
-    "id": "en_boss_01",
-    "name": "血月主演",
-    "hp": 9000,
-    "atk": 450,
-    "def": 300,
-    "res": 40,
-    "attackInterval": 2.0,
-    "damageType": "physical",
-    "speed": 0.28,
-    "blockWeight": 3,
-    "leakDamage": 5,
-    "tags": ["boss"],
-    "description": "血月之夜压轴登场的首席伶人：挡 3 以下无法拦停，漏过即重创防线。"
-  }
+ {
+  "id": "en_slug",
+  "name": "源石蛞蝓",
+  "hp": 550,
+  "atk": 100,
+  "def": 50,
+  "res": 0,
+  "attackInterval": 2.0,
+  "damageType": "physical",
+  "speed": 0.5,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [
+   "weak"
+  ],
+  "description": "示例杂兵：慢速、低伤害，用于验证基本管线。"
+ },
+ {
+  "id": "en_soldier",
+  "name": "剧团打手",
+  "hp": 1000,
+  "atk": 200,
+  "def": 120,
+  "res": 10,
+  "attackInterval": 1.8,
+  "damageType": "physical",
+  "speed": 0.55,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [],
+  "description": "示例近战兵：标准面板，用于验证阻挡与对拼数值。"
+ },
+ {
+  "id": "en_runner",
+  "name": "红幕掠袭者",
+  "hp": 420,
+  "atk": 150,
+  "def": 60,
+  "res": 0,
+  "attackInterval": 1.5,
+  "damageType": "physical",
+  "speed": 1.1,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [
+   "fast"
+  ],
+  "description": "示例快速兵：高速低血，用于验证费用压力与漏怪判定。"
+ },
+ {
+  "id": "en_armor_01",
+  "name": "铁幕守灵",
+  "hp": 1600,
+  "atk": 220,
+  "def": 500,
+  "res": 0,
+  "attackInterval": 2.2,
+  "damageType": "physical",
+  "speed": 0.35,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [
+   "armored"
+  ],
+  "description": "披着报废幕布铁架的行走的墙：物理攻击几乎无效，考验法术输出配置。"
+ },
+ {
+  "id": "en_hexer_01",
+  "name": "绯语咒伶",
+  "hp": 1200,
+  "atk": 260,
+  "def": 80,
+  "res": 60,
+  "attackInterval": 1.8,
+  "damageType": "arts",
+  "speed": 0.5,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [
+   "arcane"
+  ],
+  "description": "哼着倒扣的咏叹调：高法抗之躯，专治全队法伤的偏科编队。"
+ },
+ {
+  "id": "en_swarm_01",
+  "name": "哑角飞虱",
+  "hp": 260,
+  "atk": 90,
+  "def": 20,
+  "res": 0,
+  "attackInterval": 1.6,
+  "damageType": "physical",
+  "speed": 0.8,
+  "blockWeight": 1,
+  "leakDamage": 1,
+  "tags": [
+   "weak",
+   "swarm"
+  ],
+  "description": "成群涌向舞台的哑角虫群：单体输出会被数量淹没，考验范围清场能力。"
+ },
+ {
+  "id": "en_boss_01",
+  "name": "血月主演",
+  "hp": 9000,
+  "atk": 450,
+  "def": 300,
+  "res": 40,
+  "attackInterval": 2.0,
+  "damageType": "physical",
+  "speed": 0.28,
+  "blockWeight": 3,
+  "leakDamage": 5,
+  "tags": [
+   "boss"
+  ],
+  "description": "血月之夜压轴登场的首席伶人：挡 3 以下无法拦停，漏过即重创防线。"
+ },
+ {
+  "id": "en_boss_00",
+  "name": "候补主演",
+  "hp": 4200,
+  "atk": 380,
+  "def": 250,
+  "res": 30,
+  "attackInterval": 2.0,
+  "damageType": "physical",
+  "speed": 0.3,
+  "blockWeight": 2,
+  "leakDamage": 3,
+  "tags": [
+   "boss"
+  ],
+  "description": "血月剧团的候补演员：挡 2 即可拦停，是前中层 BOSS 节点的守门人。漏过扣 3 点目标生命。"
+ }
 ]

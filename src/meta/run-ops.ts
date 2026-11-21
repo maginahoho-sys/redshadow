@@ -15,9 +15,12 @@ import type {
 } from "../contracts";
 import operatorsJson from "../data/operators.json";
 
+/** 干员定义表（招募券职业池等用途） */
+const OPERATORS = operatorsJson as unknown as (OperatorDef & { profession: string })[];
+
 /** 干员 id → 星级（进阶费用按此查表） */
 const RARITY_BY_ID: Record<string, number> = Object.fromEntries(
-  (operatorsJson as unknown as OperatorDef[]).map(o => [o.id, o.rarity])
+  OPERATORS.map(o => [o.id, o.rarity])
 );
 
 // ============================================================
@@ -89,7 +92,8 @@ export interface ShopPools {
   operatorIds: string[];  // 可出现的干员
 }
 
-const SHOP_KINDS: ShopItem["kind"][] = ["relic", "ticket", "promotion", "life", "operator"];
+// 商店 kind 抽取池：ticket 占两份提高招募券出现率（肉鸽经济需要稳定的干员获取途径）
+const SHOP_KINDS: ShopItem["kind"][] = ["relic", "ticket", "ticket", "promotion", "life", "operator"];
 
 /**
  * 生成一批商店商品（固定 4 件，同 rng 序列完全可复现）。
@@ -198,7 +202,11 @@ function applyEffect(
       return true;
     }
     case "ticket": {
-      state.recruitTickets.push(effect.value as string);
+      // value 为 "random" 时从干员表随机抽一个职业；否则按字面职业发券
+      const v = effect.value === "random"
+        ? rng.pick([...new Set(OPERATORS.map(o => o.profession))])
+        : (effect.value as string);
+      state.recruitTickets.push(v);
       return true;
     }
     case "operator": {

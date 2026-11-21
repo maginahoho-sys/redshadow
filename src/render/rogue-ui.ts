@@ -215,7 +215,7 @@ export class RogueScene extends Phaser.Scene {
       const relic = RELIC_LIST.find(r => r.id === rid);
       if (relic) mods.push(...(relic.mods as RelicMod[]));
     }
-    const stage = pickStage(this.rng, nodeType);
+    const stage = pickStage(this.rng, nodeType, state.floor);
     const battle = createBattle({
       stage,
       squadOperatorIds: [...state.squad],
@@ -249,7 +249,8 @@ export class RogueScene extends Phaser.Scene {
         battleScene.scene.start("Rogue", {
           run: state, result,
           rewards: `+${r.hope} 希望　+${r.ingots} 源石锭${r.relicId
-            ? `　获得收藏品【${RELIC_LIST.find(x => x.id === r.relicId)?.name ?? r.relicId}】` : ""}`
+            ? `　获得收藏品【${RELIC_LIST.find(x => x.id === r.relicId)?.name ?? r.relicId}】` : ""}${r.ticket
+            ? `　获得【${r.ticket}】职业招募券` : ""}`
         } satisfies RunData);
         return;
       }

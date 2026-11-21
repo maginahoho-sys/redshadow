@@ -5,8 +5,8 @@
     "ingots": 10,
     "objectiveHp": 4,
     "objectiveHpCap": 8,
-    "squadSizeBase": 4,
-    "initialSquad": [],
+    "squadSizeBase": 6,
+    "initialSquad": ["op_vanguard_01", "op_defender_01", "op_sniper_01", "op_caster_01"],
     "initialRelics": []
   },
   "recruitCostByRarity": {
@@ -21,8 +21,8 @@
     "6": 3
   },
   "floors": [
-    { "floorName": "红幕初启", "nodeCountRange": [3, 4], "weights": { "battle": 5, "emergencyBattle": 0, "shop": 1.5, "event": 2 } },
-    { "floorName": "积尘回廊", "nodeCountRange": [3, 4], "weights": { "battle": 4, "emergencyBattle": 1, "shop": 1.5, "event": 1.5, "gift": 0.7 } },
+    { "floorName": "红幕初启", "nodeCountRange": [3, 4], "weights": { "battle": 5, "emergencyBattle": 0, "shop": 1.5, "event": 2, "interlude": 0.7 } },
+    { "floorName": "积尘回廊", "nodeCountRange": [3, 4], "weights": { "battle": 4, "emergencyBattle": 1, "shop": 1.5, "event": 1.5, "gift": 0.7, "interlude": 0.7 } },
     { "floorName": "旧舞台排练", "nodeCountRange": [3, 4], "weights": { "battle": 3, "emergencyBattle": 1.5, "shop": 1.5, "event": 1.5, "safeCorner": 0.7, "interlude": 0.7 } },
     { "floorName": "梦魇排演", "nodeCountRange": [3, 4], "weights": { "battle": 2.5, "emergencyBattle": 2, "shop": 1.5, "event": 1.5, "gift": 0.7, "interlude": 0.7 } },
     { "floorName": "终幕将至", "nodeCountRange": [2, 3], "weights": { "battle": 2, "emergencyBattle": 2, "shop": 1, "event": 1 } }

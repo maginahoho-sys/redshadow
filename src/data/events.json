@@ -1,58 +1,109 @@
 [
-  {
-    "id": "ev_wanderer",
-    "title": "流浪的剧团",
-    "text": "一位衣着褴褛的剧团成员拦住了你：「大人，两个源石锭，换一份希望，怎么样？」",
-    "options": [
-      {
-        "text": "成交（消耗 2 源石锭，获得 1 希望）",
-        "requireIngots": 2,
-        "effects": [
-          { "kind": "ingots", "op": "add", "value": -2 },
-          { "kind": "hope", "op": "add", "value": 1 }
-        ]
-      },
-      {
-        "text": "婉拒离开",
-        "effects": []
-      }
+ {
+  "id": "ev_wanderer",
+  "title": "流浪的剧团",
+  "text": "一位衣着褴褛的剧团成员拦住了你：「大人，两个源石锭，换一份希望，怎么样？」",
+  "options": [
+   {
+    "text": "成交（消耗 2 源石锭，获得 1 希望）",
+    "requireIngots": 2,
+    "effects": [
+     {
+      "kind": "ingots",
+      "op": "add",
+      "value": -2
+     },
+     {
+      "kind": "hope",
+      "op": "add",
+      "value": 1
+     }
     ]
-  },
-  {
-    "id": "ev_blood_moon_bet",
-    "title": "血月赌局",
-    "text": "角落里的赌桌上骰子未停。庄家抬起帽檐：「押 3 个源石锭，赢了你自己挑一件宝物。」",
-    "options": [
-      {
-        "text": "下注（消耗 3 源石锭，随机获得一件收藏品）",
-        "requireIngots": 3,
-        "effects": [
-          { "kind": "ingots", "op": "add", "value": -3 },
-          { "kind": "relic", "op": "add", "value": "random" }
-        ]
-      },
-      {
-        "text": "转身离开",
-        "effects": []
-      }
+   },
+   {
+    "text": "婉拒离开",
+    "effects": []
+   }
+  ]
+ },
+ {
+  "id": "ev_blood_moon_bet",
+  "title": "血月赌局",
+  "text": "角落里的赌桌上骰子未停。庄家抬起帽檐：「押 3 个源石锭，赢了你自己挑一件宝物。」",
+  "options": [
+   {
+    "text": "下注（消耗 3 源石锭，随机获得一件收藏品）",
+    "requireIngots": 3,
+    "effects": [
+     {
+      "kind": "ingots",
+      "op": "add",
+      "value": -3
+     },
+     {
+      "kind": "relic",
+      "op": "add",
+      "value": "random"
+     }
     ]
-  },
-  {
-    "id": "ev_dark_bargain",
-    "title": "幕后的低语",
-    "text": "你听见幕后传来低语：「拿走这枚铸币……还有三份希望。这是交易，不是馈赠。」",
-    "options": [
-      {
-        "text": "接受交易（随机获得一件收藏品与 3 点希望）",
-        "effects": [
-          { "kind": "relic", "op": "add", "value": "random" },
-          { "kind": "hope", "op": "add", "value": 3 }
-        ]
-      },
-      {
-        "text": "警惕地退开",
-        "effects": []
-      }
+   },
+   {
+    "text": "转身离开",
+    "effects": []
+   }
+  ]
+ },
+ {
+  "id": "ev_dark_bargain",
+  "title": "幕后的低语",
+  "text": "你听见幕后传来低语：「拿走这枚铸币……还有三份希望。这是交易，不是馈赠。」",
+  "options": [
+   {
+    "text": "接受交易（随机获得一件收藏品与 3 点希望）",
+    "effects": [
+     {
+      "kind": "relic",
+      "op": "add",
+      "value": "random"
+     },
+     {
+      "kind": "hope",
+      "op": "add",
+      "value": 3
+     }
     ]
-  }
+   },
+   {
+    "text": "警惕地退开",
+    "effects": []
+   }
+  ]
+ },
+ {
+  "id": "ev_stagehand",
+  "title": "后台的杂役",
+  "text": "一个搬运道具的杂役凑到台前：「大人，帮我把这箱'私货'带出去，里面是一张各处都认的举荐信……就收您三枚源石锭。」",
+  "options": [
+   {
+    "text": "买下举荐信（消耗 3 源石锭，获得 1 张职业招募券）",
+    "requireIngots": 3,
+    "effects": [
+     {
+      "kind": "ingots",
+      "op": "add",
+      "value": -3
+     },
+     {
+      "kind": "ticket",
+      "op": "add",
+      "value": "random"
+     }
+    ]
+   },
+   {
+    "text": "婉拒离开",
+    "effects": []
+   }
+  ]
+ }
 ]

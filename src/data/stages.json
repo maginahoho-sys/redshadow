@@ -1,333 +1,1074 @@
 [
-  {
-    "id": "st_crimson_lobby",
-    "name": "猩红前厅",
-    "rows": 5,
-    "cols": 7,
-    "terrain": [
-      ".......",
-      ".hhhh..",
-      "SrrrrrG",
-      ".hhhh..",
-      "......."
+ {
+  "id": "st_crimson_lobby",
+  "name": "猩红前厅",
+  "rows": 5,
+  "cols": 7,
+  "terrain": [
+   ".......",
+   ".hhhh..",
+   "SrrrrrG",
+   ".hhhh..",
+   "......."
+  ],
+  "spawns": [
+   {
+    "row": 2,
+    "col": 0
+   }
+  ],
+  "goals": [
+   {
+    "row": 2,
+    "col": 6
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 2,
+     "col": 0
+    },
+    {
+     "row": 2,
+     "col": 1
+    },
+    {
+     "row": 2,
+     "col": 2
+    },
+    {
+     "row": 2,
+     "col": 3
+    },
+    {
+     "row": 2,
+     "col": 4
+    },
+    {
+     "row": 2,
+     "col": 5
+    },
+    {
+     "row": 2,
+     "col": 6
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "delay": 2,
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 3,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 3,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_runner",
+      "count": 2,
+      "interval": 1.5,
+      "delay": 6,
+      "spawn": 0
+     }
+    ]
+   }
+  ],
+  "initialDp": 10,
+  "dpRate": 0.8,
+  "objectiveHp": 3,
+  "description": "示例关卡：直线通道，验证部署/阻挡/波次/胜负全流程。"
+ },
+ {
+  "id": "st_dusty_corridor",
+  "name": "积尘回廊",
+  "rows": 5,
+  "cols": 9,
+  "terrain": [
+   "S........",
+   "rh.h.h...",
+   "r....r...",
+   "rrrrrrrrG",
+   "..h...h.."
+  ],
+  "spawns": [
+   {
+    "row": 0,
+    "col": 0
+   }
+  ],
+  "goals": [
+   {
+    "row": 3,
+    "col": 8
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 0,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 0
+    },
+    {
+     "row": 2,
+     "col": 0
+    },
+    {
+     "row": 3,
+     "col": 0
+    },
+    {
+     "row": 3,
+     "col": 1
+    },
+    {
+     "row": 3,
+     "col": 2
+    },
+    {
+     "row": 3,
+     "col": 3
+    },
+    {
+     "row": 3,
+     "col": 4
+    },
+    {
+     "row": 3,
+     "col": 5
+    },
+    {
+     "row": 3,
+     "col": 6
+    },
+    {
+     "row": 3,
+     "col": 7
+    },
+    {
+     "row": 3,
+     "col": 8
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "delay": 2,
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 4,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "time",
+    "delay": 14,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 3,
+      "interval": 2.5,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_runner",
+      "count": 3,
+      "interval": 1.5,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   }
+  ],
+  "initialDp": 12,
+  "dpRate": 0.8,
+  "objectiveHp": 4,
+  "description": "L 形弯道关：先纵后横，弯道处是阻挡点；高台沿路分布，约 10 只敌人三波递进。"
+ },
+ {
+  "id": "st_twin_stage",
+  "name": "双面舞台",
+  "rows": 6,
+  "cols": 9,
+  "terrain": [
+   "..S......",
+   "..r...h..",
+   "..rrrrrrG",
+   "..r...h..",
+   "..r......",
+   "..S...h.."
+  ],
+  "spawns": [
+   {
+    "row": 0,
+    "col": 2
+   },
+   {
+    "row": 5,
+    "col": 2
+   }
+  ],
+  "goals": [
+   {
+    "row": 2,
+    "col": 8
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 0,
+     "col": 2
+    },
+    {
+     "row": 1,
+     "col": 2
+    },
+    {
+     "row": 2,
+     "col": 2
+    },
+    {
+     "row": 2,
+     "col": 3
+    },
+    {
+     "row": 2,
+     "col": 4
+    },
+    {
+     "row": 2,
+     "col": 5
+    },
+    {
+     "row": 2,
+     "col": 6
+    },
+    {
+     "row": 2,
+     "col": 7
+    },
+    {
+     "row": 2,
+     "col": 8
+    }
+   ],
+   [
+    {
+     "row": 5,
+     "col": 2
+    },
+    {
+     "row": 4,
+     "col": 2
+    },
+    {
+     "row": 3,
+     "col": 2
+    },
+    {
+     "row": 2,
+     "col": 2
+    },
+    {
+     "row": 2,
+     "col": 3
+    },
+    {
+     "row": 2,
+     "col": 4
+    },
+    {
+     "row": 2,
+     "col": 5
+    },
+    {
+     "row": 2,
+     "col": 6
+    },
+    {
+     "row": 2,
+     "col": 7
+    },
+    {
+     "row": 2,
+     "col": 8
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "delay": 2,
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 3,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "time",
+    "delay": 10,
+    "entries": [
+     {
+      "enemyId": "en_runner",
+      "count": 3,
+      "interval": 1.5,
+      "delay": 0,
+      "spawn": 1
+     }
+    ]
+   },
+   {
+    "trigger": "time",
+    "delay": 18,
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 2,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_armor_01",
+      "count": 1,
+      "interval": 3,
+      "delay": 3,
+      "spawn": 1
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_runner",
+      "count": 2,
+      "interval": 1.5,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 2.5,
+      "delay": 0,
+      "spawn": 1
+     }
+    ]
+   }
+  ],
+  "initialDp": 13,
+  "dpRate": 0.9,
+  "objectiveHp": 5,
+  "description": "双出生点关：上下两路汇入同一防御点，四波交替出怪考验两线布防；含 1 只高防龟验证法伤配置。"
+ },
+ {
+  "id": "st_rehearsal",
+  "name": "排练惊魂",
+  "rows": 5,
+  "cols": 8,
+  "terrain": [
+   "..h.....",
+   "SrrrrrrG",
+   "...h....",
+   "........",
+   "........"
+  ],
+  "spawns": [
+   {
+    "row": 1,
+    "col": 0
+   }
+  ],
+  "goals": [
+   {
+    "row": 1,
+    "col": 7
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 1,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 1
+    },
+    {
+     "row": 1,
+     "col": 2
+    },
+    {
+     "row": 1,
+     "col": 3
+    },
+    {
+     "row": 1,
+     "col": 4
+    },
+    {
+     "row": 1,
+     "col": 5
+    },
+    {
+     "row": 1,
+     "col": 6
+    },
+    {
+     "row": 1,
+     "col": 7
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "delay": 2,
+    "entries": [
+     {
+      "enemyId": "en_swarm_01",
+      "count": 4,
+      "interval": 1.2,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 4,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_hexer_01",
+      "count": 2,
+      "interval": 3,
+      "delay": 4,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_hexer_01",
+      "count": 1,
+      "interval": 3,
+      "delay": 3,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_swarm_01",
+      "count": 1,
+      "interval": 1,
+      "delay": 6,
+      "spawn": 0
+     }
+    ]
+   }
+  ],
+  "initialDp": 14,
+  "dpRate": 1.0,
+  "objectiveHp": 4,
+  "description": "紧急作战：全程仅 2 格高台，远程部署压力大；14 只混合海三波高压（虫群开场、法抗混编跟进）。"
+ },
+ {
+  "id": "st_finale",
+  "name": "终幕",
+  "rows": 7,
+  "cols": 10,
+  "terrain": [
+   "S.........",
+   "rrrrrrrrr.",
+   "....h...r.",
+   ".h......r.",
+   "....h...r.",
+   "rrrrrrrrr.",
+   "rrrrrrrrrG"
+  ],
+  "spawns": [
+   {
+    "row": 0,
+    "col": 0
+   }
+  ],
+  "goals": [
+   {
+    "row": 6,
+    "col": 9
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 0,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 1
+    },
+    {
+     "row": 1,
+     "col": 2
+    },
+    {
+     "row": 1,
+     "col": 3
+    },
+    {
+     "row": 1,
+     "col": 4
+    },
+    {
+     "row": 1,
+     "col": 5
+    },
+    {
+     "row": 1,
+     "col": 6
+    },
+    {
+     "row": 1,
+     "col": 7
+    },
+    {
+     "row": 1,
+     "col": 8
+    },
+    {
+     "row": 2,
+     "col": 8
+    },
+    {
+     "row": 3,
+     "col": 8
+    },
+    {
+     "row": 4,
+     "col": 8
+    },
+    {
+     "row": 5,
+     "col": 8
+    },
+    {
+     "row": 5,
+     "col": 7
+    },
+    {
+     "row": 5,
+     "col": 6
+    },
+    {
+     "row": 5,
+     "col": 5
+    },
+    {
+     "row": 5,
+     "col": 4
+    },
+    {
+     "row": 5,
+     "col": 3
+    },
+    {
+     "row": 5,
+     "col": 2
+    },
+    {
+     "row": 5,
+     "col": 1
+    },
+    {
+     "row": 5,
+     "col": 0
+    },
+    {
+     "row": 6,
+     "col": 0
+    },
+    {
+     "row": 6,
+     "col": 1
+    },
+    {
+     "row": 6,
+     "col": 2
+    },
+    {
+     "row": 6,
+     "col": 3
+    },
+    {
+     "row": 6,
+     "col": 4
+    },
+    {
+     "row": 6,
+     "col": 5
+    },
+    {
+     "row": 6,
+     "col": 6
+    },
+    {
+     "row": 6,
+     "col": 7
+    },
+    {
+     "row": 6,
+     "col": 8
+    },
+    {
+     "row": 6,
+     "col": 9
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "delay": 2,
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 4,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "time",
+    "delay": 14,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 4,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_runner",
+      "count": 1,
+      "interval": 1.5,
+      "delay": 5,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 5,
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 3,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_hexer_01",
+      "count": 2,
+      "interval": 3,
+      "delay": 3,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_swarm_01",
+      "count": 1,
+      "interval": 1,
+      "delay": 6,
+      "spawn": 0
+     }
+    ]
+   },
+   {
+    "trigger": "clear",
+    "delay": 6,
+    "entries": [
+     {
+      "enemyId": "en_boss_01",
+      "count": 1,
+      "interval": 10,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 3,
+      "delay": 5,
+      "spawn": 0
+     }
+    ]
+   }
+  ],
+  "initialDp": 14,
+  "dpRate": 0.9,
+  "objectiveHp": 6,
+  "isBossStage": true,
+  "description": "终幕 BOSS 关：三折蛇形长路给足部署时间，前三波混合海消耗，末波血月主演率护卫压轴登场。",
+  "bossTier": 3
+ },
+ {
+  "id": "st_boss_audition",
+  "name": "血月试演",
+  "rows": 5,
+  "cols": 9,
+  "terrain": [
+   "S........",
+   "rrrrrrr..",
+   "..h...r..",
+   ".h.h..r..",
+   "rrrrrrrrG"
+  ],
+  "spawns": [
+   {
+    "row": 0,
+    "col": 0
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 0,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 1
+    },
+    {
+     "row": 1,
+     "col": 2
+    },
+    {
+     "row": 1,
+     "col": 3
+    },
+    {
+     "row": 1,
+     "col": 4
+    },
+    {
+     "row": 1,
+     "col": 5
+    },
+    {
+     "row": 1,
+     "col": 6
+    },
+    {
+     "row": 2,
+     "col": 6
+    },
+    {
+     "row": 3,
+     "col": 6
+    },
+    {
+     "row": 4,
+     "col": 6
+    },
+    {
+     "row": 4,
+     "col": 7
+    },
+    {
+     "row": 4,
+     "col": 8
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 3,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     }
     ],
-    "spawns": [{ "row": 2, "col": 0 }],
-    "goals": [{ "row": 2, "col": 6 }],
-    "paths": [
-      [
-        { "row": 2, "col": 0 },
-        { "row": 2, "col": 1 },
-        { "row": 2, "col": 2 },
-        { "row": 2, "col": 3 },
-        { "row": 2, "col": 4 },
-        { "row": 2, "col": 5 },
-        { "row": 2, "col": 6 }
-      ]
+    "delay": 5
+   },
+   {
+    "trigger": "time",
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_slug",
+      "count": 2,
+      "interval": 1.5,
+      "delay": 4,
+      "spawn": 0
+     }
     ],
-    "waves": [
-      {
-        "trigger": "time",
-        "delay": 2,
-        "entries": [
-          { "enemyId": "en_slug", "count": 3, "interval": 2, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 2, "interval": 3, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_runner", "count": 2, "interval": 1.5, "delay": 6, "spawn": 0 }
-        ]
-      }
+    "delay": 2
+   },
+   {
+    "trigger": "clear",
+    "entries": [
+     {
+      "enemyId": "en_boss_00",
+      "count": 1,
+      "interval": 10,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_soldier",
+      "count": 1,
+      "interval": 3,
+      "delay": 5,
+      "spawn": 0
+     }
     ],
-    "initialDp": 10,
-    "dpRate": 0.8,
-    "objectiveHp": 3,
-    "description": "示例关卡：直线通道，验证部署/阻挡/波次/胜负全流程。"
-  },
-  {
-    "id": "st_dusty_corridor",
-    "name": "积尘回廊",
-    "rows": 5,
-    "cols": 9,
-    "terrain": [
-      "S........",
-      "rh.h.h...",
-      "r....r...",
-      "rrrrrrrrG",
-      "..h...h.."
+    "delay": 2
+   }
+  ],
+  "initialDp": 20,
+  "dpRate": 0.9,
+  "objectiveHp": 5,
+  "isBossStage": true,
+  "bossTier": 1,
+  "description": "前中层 BOSS 关：候补主演（挡 2 可拦）压轴；开局费 20 保证防线成型。",
+  "goals": [
+   {
+    "row": 4,
+    "col": 8
+   }
+  ]
+ },
+ {
+  "id": "st_boss_dress",
+  "name": "血月彩排",
+  "rows": 6,
+  "cols": 9,
+  "terrain": [
+   "S........",
+   "rrrrrrr..",
+   "..h...r..",
+   ".h.h..r..",
+   "......r..",
+   "rrrrrrrrG"
+  ],
+  "spawns": [
+   {
+    "row": 0,
+    "col": 0
+   }
+  ],
+  "paths": [
+   [
+    {
+     "row": 0,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 0
+    },
+    {
+     "row": 1,
+     "col": 1
+    },
+    {
+     "row": 1,
+     "col": 2
+    },
+    {
+     "row": 1,
+     "col": 3
+    },
+    {
+     "row": 1,
+     "col": 4
+    },
+    {
+     "row": 1,
+     "col": 5
+    },
+    {
+     "row": 1,
+     "col": 6
+    },
+    {
+     "row": 2,
+     "col": 6
+    },
+    {
+     "row": 3,
+     "col": 6
+    },
+    {
+     "row": 4,
+     "col": 6
+    },
+    {
+     "row": 5,
+     "col": 6
+    },
+    {
+     "row": 5,
+     "col": 7
+    },
+    {
+     "row": 5,
+     "col": 8
+    }
+   ]
+  ],
+  "waves": [
+   {
+    "trigger": "time",
+    "entries": [
+     {
+      "enemyId": "en_slug",
+      "count": 2,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_swarm_01",
+      "count": 1,
+      "interval": 1,
+      "delay": 6,
+      "spawn": 0
+     }
     ],
-    "spawns": [{ "row": 0, "col": 0 }],
-    "goals": [{ "row": 3, "col": 8 }],
-    "paths": [
-      [
-        { "row": 0, "col": 0 },
-        { "row": 1, "col": 0 },
-        { "row": 2, "col": 0 },
-        { "row": 3, "col": 0 },
-        { "row": 3, "col": 1 },
-        { "row": 3, "col": 2 },
-        { "row": 3, "col": 3 },
-        { "row": 3, "col": 4 },
-        { "row": 3, "col": 5 },
-        { "row": 3, "col": 6 },
-        { "row": 3, "col": 7 },
-        { "row": 3, "col": 8 }
-      ]
+    "delay": 4
+   },
+   {
+    "trigger": "time",
+    "entries": [
+     {
+      "enemyId": "en_soldier",
+      "count": 2,
+      "interval": 2,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_hexer_01",
+      "count": 1,
+      "interval": 3,
+      "delay": 4,
+      "spawn": 0
+     }
     ],
-    "waves": [
-      {
-        "trigger": "time",
-        "delay": 2,
-        "entries": [
-          { "enemyId": "en_slug", "count": 4, "interval": 2, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "time",
-        "delay": 14,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 3, "interval": 2.5, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_runner", "count": 3, "interval": 1.5, "delay": 0, "spawn": 0 }
-        ]
-      }
+    "delay": 2
+   },
+   {
+    "trigger": "clear",
+    "entries": [
+     {
+      "enemyId": "en_boss_00",
+      "count": 1,
+      "interval": 10,
+      "delay": 0,
+      "spawn": 0
+     },
+     {
+      "enemyId": "en_armor_01",
+      "count": 1,
+      "interval": 3,
+      "delay": 8,
+      "spawn": 0
+     }
     ],
-    "initialDp": 12,
-    "dpRate": 0.8,
-    "objectiveHp": 4,
-    "description": "L 形弯道关：先纵后横，弯道处是阻挡点；高台沿路分布，约 10 只敌人三波递进。"
-  },
-  {
-    "id": "st_twin_stage",
-    "name": "双面舞台",
-    "rows": 6,
-    "cols": 9,
-    "terrain": [
-      "..S......",
-      "..r...h..",
-      "..rrrrrrG",
-      "..r...h..",
-      "..r......",
-      "..S...h.."
-    ],
-    "spawns": [{ "row": 0, "col": 2 }, { "row": 5, "col": 2 }],
-    "goals": [{ "row": 2, "col": 8 }],
-    "paths": [
-      [
-        { "row": 0, "col": 2 },
-        { "row": 1, "col": 2 },
-        { "row": 2, "col": 2 },
-        { "row": 2, "col": 3 },
-        { "row": 2, "col": 4 },
-        { "row": 2, "col": 5 },
-        { "row": 2, "col": 6 },
-        { "row": 2, "col": 7 },
-        { "row": 2, "col": 8 }
-      ],
-      [
-        { "row": 5, "col": 2 },
-        { "row": 4, "col": 2 },
-        { "row": 3, "col": 2 },
-        { "row": 2, "col": 2 },
-        { "row": 2, "col": 3 },
-        { "row": 2, "col": 4 },
-        { "row": 2, "col": 5 },
-        { "row": 2, "col": 6 },
-        { "row": 2, "col": 7 },
-        { "row": 2, "col": 8 }
-      ]
-    ],
-    "waves": [
-      {
-        "trigger": "time",
-        "delay": 2,
-        "entries": [
-          { "enemyId": "en_slug", "count": 3, "interval": 2, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "time",
-        "delay": 10,
-        "entries": [
-          { "enemyId": "en_runner", "count": 3, "interval": 1.5, "delay": 0, "spawn": 1 }
-        ]
-      },
-      {
-        "trigger": "time",
-        "delay": 18,
-        "entries": [
-          { "enemyId": "en_slug", "count": 2, "interval": 2, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_armor_01", "count": 1, "interval": 3, "delay": 3, "spawn": 1 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_runner", "count": 2, "interval": 1.5, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_soldier", "count": 2, "interval": 2.5, "delay": 0, "spawn": 1 }
-        ]
-      }
-    ],
-    "initialDp": 13,
-    "dpRate": 0.9,
-    "objectiveHp": 5,
-    "description": "双出生点关：上下两路汇入同一防御点，四波交替出怪考验两线布防；含 1 只高防龟验证法伤配置。"
-  },
-  {
-    "id": "st_rehearsal",
-    "name": "排练惊魂",
-    "rows": 5,
-    "cols": 8,
-    "terrain": [
-      "..h.....",
-      "SrrrrrrG",
-      "...h....",
-      "........",
-      "........"
-    ],
-    "spawns": [{ "row": 1, "col": 0 }],
-    "goals": [{ "row": 1, "col": 7 }],
-    "paths": [
-      [
-        { "row": 1, "col": 0 },
-        { "row": 1, "col": 1 },
-        { "row": 1, "col": 2 },
-        { "row": 1, "col": 3 },
-        { "row": 1, "col": 4 },
-        { "row": 1, "col": 5 },
-        { "row": 1, "col": 6 },
-        { "row": 1, "col": 7 }
-      ]
-    ],
-    "waves": [
-      {
-        "trigger": "time",
-        "delay": 2,
-        "entries": [
-          { "enemyId": "en_swarm_01", "count": 4, "interval": 1.2, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 4, "interval": 2, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_hexer_01", "count": 2, "interval": 3, "delay": 4, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 2, "interval": 2, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_hexer_01", "count": 1, "interval": 3, "delay": 3, "spawn": 0 },
-          { "enemyId": "en_swarm_01", "count": 1, "interval": 1, "delay": 6, "spawn": 0 }
-        ]
-      }
-    ],
-    "initialDp": 14,
-    "dpRate": 1.0,
-    "objectiveHp": 4,
-    "description": "紧急作战：全程仅 2 格高台，远程部署压力大；14 只混合海三波高压（虫群开场、法抗混编跟进）。"
-  },
-  {
-    "id": "st_finale",
-    "name": "终幕",
-    "rows": 7,
-    "cols": 10,
-    "terrain": [
-      "S.........",
-      "rrrrrrrrr.",
-      "....h...r.",
-      ".h......r.",
-      "....h...r.",
-      "rrrrrrrrr.",
-      "rrrrrrrrrG"
-    ],
-    "spawns": [{ "row": 0, "col": 0 }],
-    "goals": [{ "row": 6, "col": 9 }],
-    "paths": [
-      [
-        { "row": 0, "col": 0 },
-        { "row": 1, "col": 0 },
-        { "row": 1, "col": 1 },
-        { "row": 1, "col": 2 },
-        { "row": 1, "col": 3 },
-        { "row": 1, "col": 4 },
-        { "row": 1, "col": 5 },
-        { "row": 1, "col": 6 },
-        { "row": 1, "col": 7 },
-        { "row": 1, "col": 8 },
-        { "row": 2, "col": 8 },
-        { "row": 3, "col": 8 },
-        { "row": 4, "col": 8 },
-        { "row": 5, "col": 8 },
-        { "row": 5, "col": 7 },
-        { "row": 5, "col": 6 },
-        { "row": 5, "col": 5 },
-        { "row": 5, "col": 4 },
-        { "row": 5, "col": 3 },
-        { "row": 5, "col": 2 },
-        { "row": 5, "col": 1 },
-        { "row": 5, "col": 0 },
-        { "row": 6, "col": 0 },
-        { "row": 6, "col": 1 },
-        { "row": 6, "col": 2 },
-        { "row": 6, "col": 3 },
-        { "row": 6, "col": 4 },
-        { "row": 6, "col": 5 },
-        { "row": 6, "col": 6 },
-        { "row": 6, "col": 7 },
-        { "row": 6, "col": 8 },
-        { "row": 6, "col": 9 }
-      ]
-    ],
-    "waves": [
-      {
-        "trigger": "time",
-        "delay": 2,
-        "entries": [
-          { "enemyId": "en_slug", "count": 4, "interval": 2, "delay": 0, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "time",
-        "delay": 14,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 4, "interval": 2, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_runner", "count": 1, "interval": 1.5, "delay": 5, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 5,
-        "entries": [
-          { "enemyId": "en_soldier", "count": 3, "interval": 2, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_hexer_01", "count": 2, "interval": 3, "delay": 3, "spawn": 0 },
-          { "enemyId": "en_swarm_01", "count": 1, "interval": 1, "delay": 6, "spawn": 0 }
-        ]
-      },
-      {
-        "trigger": "clear",
-        "delay": 6,
-        "entries": [
-          { "enemyId": "en_boss_01", "count": 1, "interval": 10, "delay": 0, "spawn": 0 },
-          { "enemyId": "en_soldier", "count": 2, "interval": 3, "delay": 5, "spawn": 0 }
-        ]
-      }
-    ],
-    "initialDp": 14,
-    "dpRate": 0.9,
-    "objectiveHp": 6,
-    "isBossStage": true,
-    "description": "终幕 BOSS 关：三折蛇形长路给足部署时间，前三波混合海消耗，末波血月主演率护卫压轴登场。"
-  }
+    "delay": 2
+   }
+  ],
+  "initialDp": 24,
+  "dpRate": 0.9,
+  "objectiveHp": 5,
+  "isBossStage": true,
+  "bossTier": 2,
+  "description": "中前层 BOSS 关：候补主演率高防守灵压轴；血月主演本体仅在终幕登场。",
+  "goals": [
+   {
+    "row": 5,
+    "col": 8
+   }
+  ]
+ }
 ]
