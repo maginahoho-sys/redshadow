@@ -16,6 +16,7 @@ import { createRun, nodeRewards, pickStage, advanceFloor, RUN_WIN_MARK } from ".
 import { recruitCost, recruitOperator, promoteOperator, generateShopItems, resolveEvent } from "../meta/run-ops";
 import { buildOperatorEffective, buildEnemyDefs, buildGlobals } from "../systems/relics";
 import { createBattle } from "../game/battle-glue";
+import { saveRun, clearRun } from "../meta/save";
 // ---- 数据与常量 ----
 
 const OPERATOR_DEFS: Record<string, OperatorDef> = Object.fromEntries(
@@ -67,6 +68,7 @@ export class RogueScene extends Phaser.Scene {
     if (!data?.run) { this.showTeamSelect(); return; }
     this.run = data.run;
     this.rng = createRng(this.run.seed + this.run.eventLog.length);
+    saveRun(this.run);   // M16 存档点：战斗归来 / 面板结算后的最新快照落盘
 
     // 探索终局判定
     if (this.run.objectiveHp <= 0) { this.showEnding(false); return; }
@@ -89,6 +91,7 @@ export class RogueScene extends Phaser.Scene {
     if (!this.run.visitedNodeIds.includes(node.id)) this.run.visitedNodeIds.push(node.id);
     this.run.currentNodeId = node.id;
     this.pendingNodeId = null;
+    saveRun(this.run);   // M16 存档点：节点完成后落盘
   }  /** 统一文本（默认字体/颜色，省行数） */
   private txt(x: number, y: number, s: string, size: number, color = "#e8e2d9",
               wrap = 0, center = false): Phaser.GameObjects.Text {
@@ -478,8 +481,9 @@ export class RogueScene extends Phaser.Scene {
     });
   }
 
-  /** 探索终局：胜利 / 失败 */
+  /** 探索终局：胜利 / 失败（局终清档，回到标题） */
   private showEnding(won: boolean): void {
+    clearRun();   // M16 存档点：探索结束即清档
     const opCount = this.run.squad.length + this.run.reserve.length;
     this.txt(640, 240, won ? "探索胜利" : "探索失败", 44, won ? "#e8c34a" : "#d04a4a", 0, true);
     this.txt(640, 330,
@@ -487,7 +491,7 @@ export class RogueScene extends Phaser.Scene {
       18, undefined, 0, true);
     this.add.rectangle(640, 460, 200, 48, 0x3d3245).setStrokeStyle(1, OK_NUM)
       .setInteractive({ useHandCursor: true })
-      .on("pointerdown", () => this.scene.start("Rogue", {}));
+      .on("pointerdown", () => this.scene.start("Boot"));
     this.txt(640, 460, "再来一局", 18, undefined, 0, true);
   }
 }
